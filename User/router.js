@@ -28,7 +28,7 @@ router.post("/user", async (request, response) => {
         return response.status(400).send({ message: "Email not unique" });
 
       default:
-        return response.status(400).send("Baaaddd request");
+        return response.status(400).send("Bad request");
     }
   }
 });
@@ -45,7 +45,7 @@ router.post("/login", async (request, response) => {
   if (passwordValid) {
     const token = toJWT({ id: user.id });
 
-    return response.status(200).send({ token: token });
+    return response.status(200).send({ token: token, name: name });
   }
 });
 

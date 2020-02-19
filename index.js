@@ -35,7 +35,7 @@ const userRoutes = require("./User/router");
 app.use(userRoutes);
 
 const roomRoutes = require("./Room/router");
-app.use(roomRoutes);
+app.use(roomRoutes(stream));
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
