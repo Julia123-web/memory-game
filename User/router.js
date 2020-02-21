@@ -32,8 +32,9 @@ router.post("/user", async (request, response) => {
     }
   }
 });
+
 router.post("/login", async (request, response) => {
-  console.log(request.body);
+  console.log(request.body, "Login got");
 
   const user = await User.findOne({ where: { email: request.body.email } });
 
@@ -41,11 +42,11 @@ router.post("/login", async (request, response) => {
     request.body.password,
     user.password
   );
-
+  console.log("VALID PASS", passwordValid);
   if (passwordValid) {
     const token = toJWT({ id: user.id });
 
-    return response.status(200).send({ token: token, name: name });
+    return response.status(200).send({ token: token, name: user.name });
   }
 });
 
